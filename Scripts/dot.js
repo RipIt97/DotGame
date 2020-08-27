@@ -103,6 +103,7 @@ class Dot {
       var dist = Math.floor(Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2)));
       this.fitness = 1/dist;
     }
+    this.fitness = (this.fitness * 100).toFixed(2);
   }
 
   mutateDot(bestFitness) {

@@ -1,13 +1,30 @@
 <HTML>
   <HEAD>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script type="text/javascript" src="./Scripts/brain.js"></script>
-      <script type="text/javascript" src="./Scripts/obstacle.js"></script>
+    <script type="text/javascript" src="./Scripts/brain.js"></script>
+    <script type="text/javascript" src="./Scripts/obstacle.js"></script>
     <script type="text/javascript" src="./Scripts/population.js"></script>
     <script type="text/javascript" src="./Scripts/dot.js"></script>
+    <script type="text/JavaScript" src="./Scripts/outputController.js"></script>
     <script type="text/javascript" src="./Scripts/main.js"></script>
   </HEAD>
   <BODY>
     <DIV id="content"></DIV>
+    <div id="statistics">
+      <div id="generationCounter">
+        <label for="#generationCounterValue" id="generationCounterLabel">Generation:</label>
+        <span id="generationCounterValue">0</span>
+      </div>
+      <div id="bestDotFitness">
+        <label for="#bestDotFitnessValue" id="bestDotFitnessLabel">Best Dot Fitness:</label>
+        <span id="bestDotFitnessValue">0</span>
+        <span>(<span id="bestDotFitnessImprovement">0</span> improvement)</span>
+      </div>
+      <div id="bestDotSteps">
+        <label for="#bestDotStepCountValue" id="bestDotStepCountLabel">Best Dot Steps:</label>
+        <span id="bestDotStepCountValue">0</span>
+        <span>(<span id="bestDotStepCountImprovement">300</span> improvement)</span>
+      </div>
+    </div>
   </BODY>
 </HTML>
