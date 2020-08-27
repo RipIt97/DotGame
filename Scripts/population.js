@@ -90,7 +90,9 @@ class Population {
 
     var bestFitness = Math.max.apply(Math, this.dots.map(function(o) { return o.fitness; }));
     this.bestDot = this.dots.find(dot => dot.fitness == bestFitness);
-    this.maxStep = this.bestDot.brain.step;
+    if (this.bestDot.isWinner) {
+      this.maxStep = this.bestDot.brain.step;
+    }
   }
 
   generateBabies() {
