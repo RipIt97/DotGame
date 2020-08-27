@@ -1,6 +1,7 @@
 <HTML>
   <HEAD>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
     <script type="text/javascript" src="./Scripts/brain.js"></script>
     <script type="text/javascript" src="./Scripts/obstacle.js"></script>
     <script type="text/javascript" src="./Scripts/population.js"></script>
@@ -10,20 +11,30 @@
   </HEAD>
   <BODY>
     <DIV id="content"></DIV>
+
     <div id="statistics">
       <div id="generationCounter">
         <label for="#generationCounterValue" id="generationCounterLabel">Generation:</label>
         <span id="generationCounterValue">0</span>
       </div>
+
       <div id="bestDotFitness">
         <label for="#bestDotFitnessValue" id="bestDotFitnessLabel">Best Dot Fitness:</label>
         <span id="bestDotFitnessValue">0</span>
         <span>(<span id="bestDotFitnessImprovement">0</span> improvement)</span>
       </div>
+
       <div id="bestDotSteps">
         <label for="#bestDotStepCountValue" id="bestDotStepCountLabel">Best Dot Steps:</label>
         <span id="bestDotStepCountValue">0</span>
         <span>(<span id="bestDotStepCountImprovement">300</span> improvement)</span>
+      </div>
+    </div>
+
+    <div id="controls" style="padding-top: 8px;">
+      <div id="populationCounter">
+        <label for="#populationCounterSlider" id="poulationCounterLabel">Population Size:</label>
+        <input id="populationCounterSlider" type="text"></input>
       </div>
     </div>
   </BODY>

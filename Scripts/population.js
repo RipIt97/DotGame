@@ -121,4 +121,10 @@ class Population {
     }
   }
 
+  //---------------------------------------------------------------------------
+
+  updateCount(count) {
+    $(this).trigger("updateCount", count);
+  }
+
 }
