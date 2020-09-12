@@ -1,0 +1,65 @@
+body {
+  margin: 0px;
+}
+
+#content {
+  display: flex;
+  margin: 50px 100px;
+}
+
+.contentPanel {
+  background-color: lightgrey;
+}
+
+
+
+
+/******************
+    Menu Styles
+******************/
+
+#header {
+  display: flex;
+  background-color: black;
+  width: 100%;
+  height: 75px;
+  margin: 0px;
+}
+
+#logo {
+  flex-grow: 0;
+  align-self: center;
+}
+
+#logo h1 {
+  font-size: 2em;
+  color: white;
+  padding: 50px;
+  margin: 0px;
+}
+
+#topMenu {
+  display: flex;
+  flex-grow: 1;
+  float: left;
+  height: 100%;
+}
+
+.topMenuOption {
+  display: flex;
+  width: 100px;
+  height: 100%;
+  float: left;
+  align-self: flex-end;
+}
+
+.topMenuOption span:hover,
+#logo h1:hover {
+  color: lightgreen;
+  cursor: pointer;
+}
+
+.topMenuOption span {
+  margin: auto;
+  color: white;
+}
