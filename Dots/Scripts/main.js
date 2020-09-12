@@ -1,6 +1,7 @@
 var pop;
 var output;
-var DOT_COUNT = isNaN(window.localStorage.getItem("DOT_COUNT")) ? 50 : window.localStorage.getItem("DOT_COUNT"); // This controls how many dots
+var tempCount = window.localStorage.getItem("DOT_COUNT");
+var DOT_COUNT = (isNaN(tempCount) || tempCount == null) ? 50 : tempCount; // This controls how many dots
 var GEN_LIMIT = 100; // This controls how many generations to run
 var MOVE_LIMIT = 1000; // This controls the max amount of moves a dot can make before it dies
 
