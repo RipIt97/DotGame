@@ -7,20 +7,34 @@ class Population {
     this.maxStep = MOVE_LIMIT;
 
     this.goal = {
-      x: Math.floor(this.canvas.width / 2),
-      y: this.canvas.height - Math.floor(((this.canvas.height / 8) * 7)),
+      x: 1400,
+      y: 400,
       radius: 5,
     }
     this.obstacles =[];
 
+    var obst = new Obstacle([700,100], 100, 600);
+    this.obstacles.push(obst);
+
+    var o1 = new Obstacle([1350,350], 100, 25);
+    this.obstacles.push(o1);
+
+    var o2 = new Obstacle([1325,350], 25, 100);
+    this.obstacles.push(o2);
+
+    var o3 = new Obstacle([1350,425], 100, 25);
+    this.obstacles.push(o3);
+
+
+
     var obst1 = new Obstacle([300,500], 400, 100);
-    this.obstacles.push(obst1);
+    //this.obstacles.push(obst1);
 
     var obst2 = new Obstacle([900,500], 450, 100);
-    this.obstacles.push(obst2);
+    //this.obstacles.push(obst2);
 
     var obst3 = new Obstacle([700,250], 200, 100);
-    this.obstacles.push(obst3);
+    //this.obstacles.push(obst3);
 
     for (var i = 0; i < dotCount; i++) {
       this.dots.push(new Dot(this.goal, this.obstacles));
@@ -91,7 +105,7 @@ class Population {
     var bestFitness = Math.max.apply(Math, this.dots.map(function(o) { return o.fitness; }));
     this.bestDot = this.dots.find(dot => dot.fitness == bestFitness);
     if (this.bestDot.isWinner) {
-      this.maxStep = this.bestDot.brain.step;
+      this.maxStep = Math.min(this.bestDot.brain.step, this.maxStep);
     }
   }
 
@@ -106,7 +120,7 @@ class Population {
   }
 
   selectParent() {
-    var rand = Math.floor(Math.random() * this.sumOfFitness);
+    var rand = Math.random() * this.sumOfFitness;
     var localSum = 0;
     for (var i = 0; i < this.dots.length; i++) {
       localSum += this.dots[i].fitness;
@@ -124,6 +138,7 @@ class Population {
   //---------------------------------------------------------------------------
 
   updateCount(count) {
+    if (count == undefined || count == this.count) { return; }
     $(this).trigger("updateCount", count);
   }
 

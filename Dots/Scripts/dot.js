@@ -3,7 +3,7 @@ class Dot {
     this.canvas = document.getElementById("myCanvas");
     this.brain = new Brain(MOVE_LIMIT);
     this.radius = 2;
-    this.position = [800,750];
+    this.position = [100,400];
     this.velocity = [0,0];
     this.isDead = false;
     this.isWinner = false;

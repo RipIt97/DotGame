@@ -2,13 +2,13 @@ var pop;
 var output;
 var DOT_COUNT = isNaN(window.localStorage.getItem("DOT_COUNT")) ? 50 : window.localStorage.getItem("DOT_COUNT"); // This controls how many dots
 var GEN_LIMIT = 100; // This controls how many generations to run
-var MOVE_LIMIT = 300; // This controls the max amount of moves a dot can make before it dies
+var MOVE_LIMIT = 1000; // This controls the max amount of moves a dot can make before it dies
 
 window.onload = function () {
   // Create the canvas
   var cv = $("<canvas id='myCanvas' height='800px' width='1600px'></canvas>");
   cv.css("background-color", "lightgrey");
-  $("#content").append(cv);
+  $("#canvasHolder").append(cv);
 
   pop = new Population(DOT_COUNT);
   output = new OutputController(pop);

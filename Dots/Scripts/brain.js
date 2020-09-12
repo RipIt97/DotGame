@@ -26,7 +26,7 @@ class Brain {
   mutate(fitness) {
     var rate = .4 - fitness;
     if (rate < .01) { rate = .01; }
-    if (rate > .1) { rate = .1; }
+    if (rate > .15) { rate = .15; }
     rate = .01;
     for (var i = 0; i < this.directions.length; i++) {
       if (Math.random() < rate) {
@@ -36,8 +36,8 @@ class Brain {
   }
 
   getRandomMove() {
-    var x = Math.floor(Math.random() * 9) - 4;
-    var y = Math.floor(Math.random() * 9) - 4;
+    var x = Math.floor(Math.random() *13) - 6;
+    var y = Math.floor(Math.random() * 13) - 6;
     return [x,y];
   }
 

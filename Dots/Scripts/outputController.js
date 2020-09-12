@@ -1,7 +1,7 @@
 class OutputController {
   constructor(pop) {
     this.population = pop;
-    this.hookUpPopSlider();
+    this.hookUpPopCounter();
   }
 
   updatePop(pop) {
@@ -22,13 +22,27 @@ class OutputController {
     $("#bestDotStepCountImprovement").text(pop.maxStep - prevStep);
   }
 
-  hookUpPopSlider() {
+  hookUpPopCounter() {
     $("#populationCounterSlider").val(this.population.count);
     $("#populationCounterSlider").on("change", _.debounce(function(e) {
       var value = $(e.target).val();
-      if (value == undefined || value == this.population.count) { return; }
-      console.log(value);
       this.population.updateCount(value);
     }.bind(this)));
+
+    $("#populationCounterSet50").on("click", function (e) {
+      this.population.updateCount(50);
+    }.bind(this));
+
+    $("#populationCounterSet250").on("click", function (e) {
+      this.population.updateCount(250);
+    }.bind(this));
+
+    $("#populationCounterSet500").on("click", function (e) {
+      this.population.updateCount(500);
+    }.bind(this));
+
+    $("#populationCounterSet1000").on("click", function (e) {
+      this.population.updateCount(1000);
+    }.bind(this));
   }
 }
