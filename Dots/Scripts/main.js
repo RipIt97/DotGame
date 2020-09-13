@@ -2,7 +2,7 @@ var pop;
 var output;
 var tempCount = window.localStorage.getItem("DOT_COUNT");
 var DOT_COUNT = (isNaN(tempCount) || tempCount == null) ? 50 : tempCount; // This controls how many dots
-var GEN_LIMIT = 100; // This controls how many generations to run
+var GEN_LIMIT = 1000; // This controls how many generations to run
 var MOVE_LIMIT = 1000; // This controls the max amount of moves a dot can make before it dies
 
 window.onload = function () {
@@ -27,13 +27,16 @@ runGenerationStep = function(resolve, reject) {
     function(resolve, reject) {
       if (!pop.allDotsDead()) {
         pop.update();
-        pop.show();
+        if (true)//pop.generation % 5 == 0)
+        {
+          pop.show();
+        }
         resolve(new Promise(runGenerationStep));
       }
       else {
         resolve(1);
       }
-    }.bind(this, resolve, reject), 25);
+    }.bind(this, resolve, reject), 20);
 }
 
 runGenerationStepFinished = function (done) {
@@ -55,9 +58,10 @@ runPostGeneration = function() {
     output.displayGeneration();
     output.displayBestDot();
 
-    console.log("Best dot: " + pop.bestDot.fitness);
+    console.log("Best dot: " + pop.bestDot.fitness + " (" + pop.bestDot.finalStep + ")");
     pop.generateBabies();
     pop.mutateDots();
+    pop.setPrevFitnesses();
     pop.generation++;
 
     if (pop.generation < GEN_LIMIT) {

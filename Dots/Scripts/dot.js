@@ -1,5 +1,5 @@
 class Dot {
-  constructor(goal, obstacles) {
+  constructor(goal, obstacles, position) {
     this.canvas = document.getElementById("myCanvas");
     this.brain = new Brain(MOVE_LIMIT);
     this.radius = 2;
@@ -11,6 +11,9 @@ class Dot {
     this.obstacles = obstacles;
     this.fitness = 0;
     this.isBestDot = false;
+    this.timesStalled = 0;
+    this.consecutiveStalls = 0;
+    this.finalStep = MOVE_LIMIT;
   }
 
   show() {
@@ -61,13 +64,15 @@ class Dot {
   checkPosition() {
     if (this.position[0] < 2 || this.position[0] > this.canvas.width - 2 || this.position[1] < 2 || this.position[1] > this.canvas.height - 2) {
       this.isDead = true;
+      this.finalStep = this.brain.step;
     }
     else if ((this.position[0] < this.goal.x + 5) && (this.position[0] > this.goal.x - 5) && (this.position[1] < this.goal.y + 5) && (this.position[1] > this.goal.y - 5)) {
       this.isWinner = true;
-      this.winningStep = this.brain.step;
+      this.finalStep = this.brain.step;
     }
     else if (this.checkObstacles()) {
       this.isDead = true;
+      this.finalStep = this.brain.step;
     }
   }
 
@@ -90,24 +95,50 @@ class Dot {
     dot.brain = this.brain.clone();
     dot.isDead = false;
     dot.isWinner = false;
+    dot.timesStalled = this.timesStalled;
+    dot.consecutiveStalls = this.consecutiveStalls;
+    dot.finalStep = this.finalStep;
     return dot;
   }
 
   calculateFitness() {
-    if (this.isWinner) {
-      this.fitness = (1/16) + (20000 / (this.winningStep * this.winningStep));
-    }
-    else {
-      var xDif = this.position[0] - this.goal.x;
-      var yDif = this.position[1] - this.goal.y;
-      var dist = Math.floor(Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2)));
-      this.fitness = 1/dist;
-    }
-    this.fitness = (this.fitness * 100).toFixed(2);
+    // Add step points
+    var stepPoints = this.isWinner ? Math.max(1000 - this.finalStep, 0) : 0;
+    var xDif = this.position[0] - this.goal.x;
+    var yDif = this.position[1] - this.goal.y;
+    var dist = Math.floor(Math.sqrt(Math.pow(xDif, 2) + Math.pow(yDif, 2)));
+    if (dist < .001) { dist = .001; }
+    var distPoints = 1 / dist;
+    if (distPoints < .01) { distPoints *= 100; }
+    this.fitness = stepPoints + distPoints;
+    this.fitness = this.fitness.toFixed(2);
   }
 
   mutateDot(bestFitness) {
-    this.brain.mutate(bestFitness);
+    var startMutationOn = 0;
+    var ratio = this.brain.directions.length / 20; // 5% increase at a time
+
+    if (bestFitness - this.brain.prevFitness < .01) { // fitness didn't increase enough
+      this.timesStalled += 1;
+      startMutationOn = Math.min(this.finalStep - Math.abs(this.finalStep - (ratio * this.consecutiveStalls)) + ((ratio / 4) * this.timesStalled), this.finalStep - ratio);
+      startMutationOn = Math.max(startMutationOn, 0);
+      this.consecutiveStalls += 1;
+    }
+    else {
+       this.consecutiveStalls = 0;
+    }
+
+    if (this.consecutiveStalls % 10 == 0 && this.consecutiveStalls != 0) {
+      this.brain.randomize(startMutationOn);
+    }
+
+    this.brain.mutate(bestFitness, startMutationOn, this.timesStalled, this.consecutiveStalls);
+  }
+
+  // 50 dots, 763 first win, 720 best win 
+
+  setDotPrevFitness (bestFitness) {
+    this.brain.setPrevFitness(bestFitness);
   }
 
 }

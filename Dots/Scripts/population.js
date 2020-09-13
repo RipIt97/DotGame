@@ -3,7 +3,7 @@ class Population {
     this.canvas = document.getElementById("myCanvas");
     this.count = dotCount;
     this.dots = [];
-    this.generation = 1;
+    this.generation = 0;
     this.maxStep = MOVE_LIMIT;
 
     this.goal = {
@@ -13,28 +13,43 @@ class Population {
     }
     this.obstacles =[];
 
-    var obst = new Obstacle([700,100], 100, 600);
-    this.obstacles.push(obst);
-
-    var o1 = new Obstacle([1350,350], 100, 25);
+    var o1 = new Obstacle([250,500], 100, 300);
+    var o2 = new Obstacle([250,0], 100, 300);
     this.obstacles.push(o1);
-
-    var o2 = new Obstacle([1325,350], 25, 100);
     this.obstacles.push(o2);
 
-    var o3 = new Obstacle([1350,425], 100, 25);
+    var o3 = new Obstacle([500,250], 100, 300);
+    var o4 = new Obstacle([500,0], 100, 50);
+    var o5 = new Obstacle([500,750], 100, 50);
     this.obstacles.push(o3);
+    this.obstacles.push(o4);
+    this.obstacles.push(o5);
+
+    var o6 = new Obstacle([750,500], 100, 300);
+    var o7 = new Obstacle([750,0], 100, 300);
+    this.obstacles.push(o6);
+    this.obstacles.push(o7);
+
+    var o8 = new Obstacle([1000,250], 100, 300);
+    var o9 = new Obstacle([1000,0], 100, 50);
+    var o10 = new Obstacle([1000,750], 100, 50);
+    this.obstacles.push(o8);
+    this.obstacles.push(o9);
+    this.obstacles.push(o10);
+
+    var o11 = new Obstacle([1250,500], 100, 300);
+    var o12 = new Obstacle([1250,0], 100, 300);
+    this.obstacles.push(o11);
+    this.obstacles.push(o12);
+
+    var o13 = new Obstacle([1500,250], 100, 300);
+    var o14 = new Obstacle([1500,0], 100, 50);
+    var o15 = new Obstacle([1500,750], 100, 50);
+    this.obstacles.push(o13);
+    this.obstacles.push(o14);
+    this.obstacles.push(o15);
 
 
-
-    var obst1 = new Obstacle([300,500], 400, 100);
-    //this.obstacles.push(obst1);
-
-    var obst2 = new Obstacle([900,500], 450, 100);
-    //this.obstacles.push(obst2);
-
-    var obst3 = new Obstacle([700,250], 200, 100);
-    //this.obstacles.push(obst3);
 
     for (var i = 0; i < dotCount; i++) {
       this.dots.push(new Dot(this.goal, this.obstacles));
@@ -132,6 +147,14 @@ class Population {
   mutateDots() {
     for (var i = 1; i < this.dots.length; i++) {
       this.dots[i].mutateDot(this.bestDot.fitness);
+    }
+    this.dots[0].timesStalled = this.dots[1].timesStalled;
+    this.dots[0].consecutiveStalls = this.dots[1].consecutiveStalls;
+  }
+
+  setPrevFitnesses() {
+    for (var i = 0; i < this.dots.length; i++) {
+      this.dots[i].setDotPrevFitness(this.bestDot.fitness);
     }
   }
 
