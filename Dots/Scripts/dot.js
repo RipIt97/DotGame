@@ -62,11 +62,12 @@ class Dot {
   }
 
   checkPosition() {
+    var tolerance = 5;
     if (this.position[0] < 2 || this.position[0] > this.canvas.width - 2 || this.position[1] < 2 || this.position[1] > this.canvas.height - 2) {
       this.isDead = true;
       this.finalStep = this.brain.step;
     }
-    else if ((this.position[0] < this.goal.x + 5) && (this.position[0] > this.goal.x - 5) && (this.position[1] < this.goal.y + 5) && (this.position[1] > this.goal.y - 5)) {
+    else if ((this.position[0] < this.goal.x + tolerance) && (this.position[0] > this.goal.x - tolerance) && (this.position[1] < this.goal.y + tolerance) && (this.position[1] > this.goal.y - tolerance)) {
       this.isWinner = true;
       this.finalStep = this.brain.step;
     }
@@ -110,7 +111,7 @@ class Dot {
     if (dist < .001) { dist = .001; }
     var distPoints = 1 / dist;
     if (distPoints < .01) { distPoints *= 100; }
-    this.fitness = stepPoints + distPoints;
+    this.fitness = this.isWinner ? stepPoints : distPoints;
     this.fitness = this.fitness.toFixed(2);
   }
 
@@ -132,10 +133,14 @@ class Dot {
       this.brain.randomize(startMutationOn);
     }
 
+    if (this.consecutiveStalls > 20) {
+      startMutationOn = (this.consecutiveStalls - 20) * 10;
+    }
+
     this.brain.mutate(bestFitness, startMutationOn, this.timesStalled, this.consecutiveStalls);
   }
 
-  // 50 dots, 763 first win, 720 best win 
+  // 50 dots, 763 first win, 720 best win
 
   setDotPrevFitness (bestFitness) {
     this.brain.setPrevFitness(bestFitness);

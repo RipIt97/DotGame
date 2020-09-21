@@ -13,41 +13,60 @@ class Population {
     }
     this.obstacles =[];
 
-    var o1 = new Obstacle([250,500], 100, 300);
-    var o2 = new Obstacle([250,0], 100, 300);
+    var o1 = new Obstacle ([250, 200], 1000, 100);
+    var o2 = new Obstacle ([250, 500], 1000, 100);
     this.obstacles.push(o1);
     this.obstacles.push(o2);
 
-    var o3 = new Obstacle([500,250], 100, 300);
-    var o4 = new Obstacle([500,0], 100, 50);
-    var o5 = new Obstacle([500,750], 100, 50);
+    var o3 = new Obstacle([250,   0], 100, 200);
+    var o4 = new Obstacle([250, 600], 100, 200);
     this.obstacles.push(o3);
     this.obstacles.push(o4);
+
+    var o5 = new Obstacle([350, 300], 50, 100);
+    var o6 = new Obstacle([550, 400], 50, 100);
     this.obstacles.push(o5);
-
-    var o6 = new Obstacle([750,500], 100, 300);
-    var o7 = new Obstacle([750,0], 100, 300);
     this.obstacles.push(o6);
+
+    var o7 = new Obstacle([750, 300], 50, 100);
+    var o8 = new Obstacle([950, 400], 50, 100);
     this.obstacles.push(o7);
-
-    var o8 = new Obstacle([1000,250], 100, 300);
-    var o9 = new Obstacle([1000,0], 100, 50);
-    var o10 = new Obstacle([1000,750], 100, 50);
     this.obstacles.push(o8);
-    this.obstacles.push(o9);
-    this.obstacles.push(o10);
-
-    var o11 = new Obstacle([1250,500], 100, 300);
-    var o12 = new Obstacle([1250,0], 100, 300);
-    this.obstacles.push(o11);
-    this.obstacles.push(o12);
-
-    var o13 = new Obstacle([1500,250], 100, 300);
-    var o14 = new Obstacle([1500,0], 100, 50);
-    var o15 = new Obstacle([1500,750], 100, 50);
-    this.obstacles.push(o13);
-    this.obstacles.push(o14);
-    this.obstacles.push(o15);
+    // var o1 = new Obstacle([250,500], 100, 300);
+    // var o2 = new Obstacle([250,0], 100, 300);
+    // this.obstacles.push(o1);
+    // this.obstacles.push(o2);
+    //
+    // var o3 = new Obstacle([500,250], 100, 300);
+    // var o4 = new Obstacle([500,0], 100, 50);
+    // var o5 = new Obstacle([500,750], 100, 50);
+    // this.obstacles.push(o3);
+    // this.obstacles.push(o4);
+    // this.obstacles.push(o5);
+    //
+    // var o6 = new Obstacle([750,500], 100, 300);
+    // var o7 = new Obstacle([750,0], 100, 300);
+    // this.obstacles.push(o6);
+    // this.obstacles.push(o7);
+    //
+    // var o8 = new Obstacle([1000,250], 100, 300);
+    // var o9 = new Obstacle([1000,0], 100, 50);
+    // var o10 = new Obstacle([1000,750], 100, 50);
+    // this.obstacles.push(o8);
+    // this.obstacles.push(o9);
+    // this.obstacles.push(o10);
+    //
+    // var o11 = new Obstacle([1250,500], 100, 300);
+    // var o12 = new Obstacle([1250,0], 100, 300);
+    // this.obstacles.push(o11);
+    // this.obstacles.push(o12);
+    //
+    // var o13 = new Obstacle([1500,250], 100, 300);
+    // var o14 = new Obstacle([1500,0], 100, 50);
+    // var o15 = new Obstacle([1500,750], 100, 50);
+    // this.obstacles.push(o13);
+    // this.obstacles.push(o14);
+    // this.obstacles.push(o15);
 
 
 
