@@ -1,0 +1,120 @@
+body {
+  background-color: slategrey;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+button {
+  border-radius: 50px;
+}
+
+button:hover {
+  background-color: lightblue;
+}
+
+#topRow {
+  width: 100%;
+  height: 40%;
+}
+
+#topRow #topLeft {
+  width: 33%;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#topRow #topCenter {
+  width: 33%;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightblue;
+  border-radius: 100px;
+}
+
+#topRow #topRight {
+  width: 33%;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#lastCalledLabel,
+#justCalledLabel {
+  font-size: 2em;
+}
+
+#lastCalledText,
+#justCalledText {
+  font-size: 4em;
+}
+
+#topRight button {
+  width: 80%;
+  height: 20%;
+  margin: auto;
+  font-size: 2em;
+}
+
+#letterBox {
+  display: flex;
+  flex-direction: row;
+  margin: 5% 10% 5% 10%;
+  background-color: lightsteelblue;
+  border-radius: 10px;
+}
+
+#letterBox div {
+  width: 20%;
+  margin: auto;
+  margin-top: 0;
+}
+
+#letterBox div ul {
+  list-style-type: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  padding: 2px;
+  height: 300px;
+  max-height: 300px;
+  border-top: 2px solid white;
+}
+
+#letterBox div:not(:last-child) ul {
+  border-right: 2px solid white;
+}
+
+#letterBox div ul li {
+  font-size: 1.5em;
+  padding: 4px 0px 4px 50px;
+}
+
+#letterBox div p {
+  position: relative;
+  top: 0;
+  margin: 10px auto;
+  height: 40px;
+  font-size: 2em;
+  width: 30px;
+}
+
+.red {
+  color: red !important;
+}
+
+.green {
+  color: green !important;
+}
