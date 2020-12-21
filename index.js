@@ -24,4 +24,8 @@ var hookUpMenu = function () {
   $(".topMenuOption#dots").on("click", function (e) {
     window.location.href = "./Dots/index.html";
   });
+
+  $(".topMenuOption#bingo").on("click", function (e) {
+    window.location.href = "./Bingo/index.html";
+  });
 }
